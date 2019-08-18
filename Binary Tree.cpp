@@ -24,7 +24,7 @@ private:
 	void InOrder(Node* root);
 	Node* SearchNode(int val,Node* root);
 	bool CheckBST(Node*root, int min, int max);
-	int LowestCommonAncestor(Node*root,int val_1, int val_2);
+	int LowestCommonAncestorBST(Node*root,int val_1, int val_2);
 public:
 	BST():mRoot(nullptr){}
 	Node* GetRoot() { return mRoot; }
@@ -34,7 +34,8 @@ public:
 	bool SearchData(int val);
 	bool CheckBST();
 	void CreateTree();
-	int LowestCommonAncestor(int val_1,int val_2);
+	int LowestCommonAncestorBST(int val_1,int val_2);
+
 };
 void BST::CreateTree()
 {
@@ -48,24 +49,24 @@ void BST::CreateTree()
 
 }
 
-int BST::LowestCommonAncestor(Node*root, int val_1, int val_2)
+int BST::LowestCommonAncestorBST(Node*root, int val_1, int val_2)
 {
 	if (root->data > val_1 && root->data > val_2)
 	{
-		return LowestCommonAncestor(root->left, val_1, val_2);
+		return LowestCommonAncestorBST(root->left, val_1, val_2);
 	}
 	else if (root->data < val_1 && root->data < val_2)
 	{
-		return LowestCommonAncestor(root->right, val_1, val_2);
+		return LowestCommonAncestorBST(root->right, val_1, val_2);
 	}
 	else
 	{
 		return root->data;
 	}
 }
-int BST::LowestCommonAncestor(int val_1, int val_2)
+int BST::LowestCommonAncestorBST(int val_1, int val_2)
 {
-	return LowestCommonAncestor(mRoot, val_1, val_2);
+	return LowestCommonAncestorBST(mRoot, val_1, val_2);
 }
 bool BST::CheckBST()
 {
@@ -184,7 +185,7 @@ int main()
 	obj2.CreateTree();
 	obj2.InOrder();
 	cout << "\n check BST == " << obj2.CheckBST() << endl;
-	cout << "\n LCA == " << obj2.LowestCommonAncestor(25, 28);
+	cout << "\n LCA for BST == " << obj2.LowestCommonAncestorBST(25, 28);
 	
 	return 0;
 }
